@@ -31,23 +31,119 @@ namespace A4_BurstMode_test
         public MainWindow()
         {
             InitializeComponent();
-            TestUnit.Test();
+            
         }
 
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+TestUnit.Test();
+        }
+    }
+
+    class TestUnit//同時是使用範例
+    {
+        static FTDI Ftdi_USB_A = new FTDI();
+        static FTDI Ftdi_USB_B = new FTDI();
+        static FTDI Ftdi_USB_C = new FTDI();
+        static FTDI Ftdi_USB_D = new FTDI();
+        public static void Test()
+        {
+            // 初始化 A4_MotherBoard
+            A4_MotherBoard motherboard = new A4_MotherBoard(Ftdi_USB_A,Ftdi_USB_B,Ftdi_USB_C,Ftdi_USB_D);
+
+            motherboard.Ftdi_Ctrl_USB_A.FTDI_Preprocessing("20241018A");
+            motherboard.Ftdi_Ctrl_USB_B.FTDI_Preprocessing("20241018B");
+            motherboard.Ftdi_Ctrl_USB_C.FTDI_Preprocessing("20241018C");
+            motherboard.Ftdi_Ctrl_USB_D.FTDI_Preprocessing("20241018D");
+            fn_IfConnectedWillMakeSound(motherboard);//目前完成到這裡
+            motherboard.Ftdi_Ctrl_USB_C.Write(0x00, 0x09);
+            uint data = motherboard.Ftdi_Ctrl_USB_C.Read(out byte Addr);
+            bool a = motherboard.ADConverter.AD1.IsReady;
+            bool b = motherboard.ADConverter.AD2.IsReady;
+            bool c = motherboard.ADConverter.AD3.IsReady;
+            bool d = motherboard.ADConverter.AD4.IsReady;
+
+            bool a1 = motherboard.ADConverter.AD1.IsBusy;
+            bool b1 = motherboard.ADConverter.AD2.IsBusy;
+            bool c1 = motherboard.ADConverter.AD3.IsBusy;
+            bool d1 = motherboard.ADConverter.AD4.IsBusy;
+
+            // 配置 ADC 控制寄存器
+            var adcControlPack = new A4_MotherBoard.MAX11270_AD_Converter.ADC_Control_0x16_Pack
+            {
+                Bit29 = 1, // Enable ADC2
+                Bit28 = 0xCD, // Enable automatic read for ADC2
+                Bit27 = 1, // Read from ADC2
+                Bit26_24 = 0b100, // 4 bytes for ADC2
+                Bit23_16 = 0x01, // Example command for ADC2
+                Bit13 = 1, // Enable ADC1
+                Bit12 = 0xCD, // Enable automatic read for ADC1
+                Bit11 = 0, // Read from ADC1
+                Bit10_8 = 0b100, // 4 bytes for ADC1
+                Bit7_0 = 0x01 // Example command for ADC1
+            };
+            //motherboard.ADConverter.ADC_Control_0x16(adcControlPack);
+            //// 等待 ADC 準備好數據
+            //while (!motherboard.ADConverter.AD1.IsReady || !motherboard.ADConverter.AD2.IsReady)
+            //{
+            //    Thread.Sleep(10); // 避免忙等
+            //}
+            //// 讀取數據（假設每個通道返回4字節數據）
+            //byte[] ad1Data = motherboard.ADConverter.ctrl.Read(4);
+            //byte[] ad2Data = motherboard.ADConverter.ctrl.Read(4);
+            //Console.WriteLine("ADC1 Data: " + BitConverter.ToString(ad1Data));
+            //Console.WriteLine("ADC2 Data: " + BitConverter.ToString(ad2Data));
+        }
+
+      
+        #region ftdi funtion
+        static public void fn_IfConnectedWillMakeSound(A4_MotherBoard motherboard)
+        {
+            motherboard.Ftdi_Ctrl_USB_C.Write(0x01, 0x20000);
+            //motherboard.Ctrl.Write(0x01, 0x20000);
+            Thread.Sleep(100);
+
+            motherboard.Ftdi_Ctrl_USB_C.Write(0x01, 0x00000);
+            //motherboard.Ctrl.Write(0x01, 0x00000);
+            Thread.Sleep(50);
+
+            motherboard.Ftdi_Ctrl_USB_C.Write(0x01, 0x20000);
+            //motherboard.Ctrl.Write(0x01, 0x20000);
+            Thread.Sleep(50);
+
+            motherboard.Ftdi_Ctrl_USB_C.Write(0x01, 0x00000);
+            //motherboard.Ctrl.Write(0x01, 0x00000);
+            Thread.Sleep(50);
+
+            motherboard.Ftdi_Ctrl_USB_C.Write(0x01, 0x20000);
+            //motherboard.Ctrl.Write(0x01, 0x20000);
+            Thread.Sleep(50);
+
+            motherboard.Ftdi_Ctrl_USB_C.Write(0x01, 0x00000);
+            //motherboard.Ctrl.Write(0x01, 0x00000);
+            Thread.Sleep(50);
+        }
+        #endregion
     }
 
     class A4_MotherBoard
     {
         // 每個主板有自己的 FTDI_Ctrl
-        public FTDI_Ctrl Ctrl { get; private set; }
+        public FTDI_Ctrl Ftdi_Ctrl_USB_A { get;  set; }//FrameWare write port
+        public FTDI_Ctrl Ftdi_Ctrl_USB_B { get; set; }//Burst mode port(Only Read)
+        public FTDI_Ctrl Ftdi_Ctrl_USB_C { get; set; }//Nomral CMD port
+        public FTDI_Ctrl Ftdi_Ctrl_USB_D { get; set; }
+
 
         // 建構子傳入 FTDI 裝置
-        public A4_MotherBoard(FTDI ftdi)
+        public A4_MotherBoard(FTDI Ftdi_USB_A, FTDI Ftdi_USB_B, FTDI Ftdi_USB_C, FTDI Ftdi_USB_D)
         {
-            Ctrl = new FTDI_Ctrl(ftdi);
-
+            Ftdi_Ctrl_USB_A = new FTDI_Ctrl(Ftdi_USB_A);
+            Ftdi_Ctrl_USB_B = new FTDI_Ctrl(Ftdi_USB_B);
+            Ftdi_Ctrl_USB_C = new FTDI_Ctrl(Ftdi_USB_C);
+            Ftdi_Ctrl_USB_D = new FTDI_Ctrl(Ftdi_USB_D);
             // 初始化子元件
-            ADConverter = new MAX11270_AD_Converter(Ctrl);
+            ADConverter = new MAX11270_AD_Converter(Ftdi_Ctrl_USB_C);
             //  Memory = new MemoryChip(Ctrl);
             //  Motion = new MotionChip(Ctrl);
         }
@@ -63,8 +159,107 @@ namespace A4_BurstMode_test
             {
                 fTDI = ftdi ?? throw new ArgumentNullException(nameof(ftdi));
             }
+
+            public void FTDI_Preprocessing(String SerialNumber)
+            {
+                fn_Ftdi_Init(out int FtdiCount);
+                fn_Ftdi_Connect(SerialNumber);
+                fn_Ftdi_Setting(FtdiCount);
+            }
+
+            public string fn_Ftdi_Init(out int FindFtdiCount)
+            {
+                // 取得裝置數量
+                uint ftdiDeviceCount = 0;
+                FindFtdiCount = (int)ftdiDeviceCount;
+                FTDI.FT_STATUS status = fTDI.GetNumberOfDevices(ref ftdiDeviceCount);
+
+                if (status != FTDI.FT_STATUS.FT_OK || ftdiDeviceCount == 0)
+                {
+                    fTDI.GetDescription(out string ftdiDescription);
+                    throw new InvalidOperationException("無法取得 FTDI 裝置數量" + ftdiDescription);
+                }
+
+                FindFtdiCount = (int)ftdiDeviceCount;
+                Console.WriteLine("找到 " + ftdiDeviceCount + " 個 FTDI 裝置");
+                return $"找到 {ftdiDeviceCount} 個裝置";
+            }
+
+            public void fn_Ftdi_Connect(String SerialNumber)
+            {
+                FTDI.FT_DEVICE_INFO_NODE[] deviceList = new FTDI.FT_DEVICE_INFO_NODE[4];
+                FTDI.FT_STATUS status = fTDI.GetDeviceList(deviceList);
+                if (status != FTDI.FT_STATUS.FT_OK)
+                {
+                    fTDI.GetDescription(out string ftdiDescription);
+                    throw new InvalidOperationException("無法取得裝置清單，請檢查連接或驅動程式" + ftdiDescription);
+                }
+
+                //if (fTDI.IsOpen != true)
+                //{
+                //    if (fTDI.OpenByIndex(2) != FTDI.FT_STATUS.FT_OK)
+                //    {
+                //        fTDI.GetDescription(out string ftdiDescription);
+                //        throw new InvalidOperationException("無法開啟 FTDI 裝置，請檢查連接或驅動程式。" + ftdiDescription);
+                //    }
+                //}
+
+                if (fTDI.IsOpen != true)
+                {
+                    if (fTDI.OpenBySerialNumber(SerialNumber) != FTDI.FT_STATUS.FT_OK)
+                    {
+                        fTDI.GetDescription(out string ftdiDescription);
+                        throw new InvalidOperationException("無法開啟 FTDI 裝置，請檢查連接或驅動程式。" + ftdiDescription);
+                    }
+                }
+                status = fTDI.GetDeviceList(deviceList);
+
+
+                if (status != FTDI.FT_STATUS.FT_OK || !fTDI.IsOpen)
+                {
+
+                    fTDI.GetDescription(out string ftdiDescription);
+                    throw new InvalidOperationException("無法開啟裝置: " + ftdiDescription);
+                }
+                else if (status == FTDI.FT_STATUS.FT_OK && fTDI.IsOpen)
+                {
+                    fTDI.GetDescription(out string ftdiDescription);
+                    Console.WriteLine("裝置已開啟: " + ftdiDescription);
+                }
+                else
+                {
+                    throw new InvalidOperationException(status.ToString()); 
+                }
+            }
+
+            public void fn_Ftdi_Setting(int count)
+            {
+                fTDI.SetLatency(0);
+                fTDI.SetBaudRate(115200);
+                fTDI.SetDataCharacteristics(8, 1, 2); // 8-1-Even // 0-4=None,Odd,Even,Mark,Space
+                fTDI.SetFlowControl(FTDI.FT_FLOW_CONTROL.FT_FLOW_NONE, 0x11, 0x13); // 無 flow control
+
+                FTDI.FT_DEVICE_INFO_NODE[] deviceList = new FTDI.FT_DEVICE_INFO_NODE[count];
+                FTDI.FT_STATUS status = fTDI.GetDeviceList(deviceList);
+                if (status != FTDI.FT_STATUS.FT_OK)
+                {
+                    throw new InvalidOperationException("無法取得裝置清單");
+                }
+                else
+                {
+                    Console.WriteLine ("裝置設定成功 "
+                        + Environment.NewLine + "     SetLatency = 0"
+                        + Environment.NewLine + "     SetBaudRate = 115200"
+                        + Environment.NewLine + "     SetDataCharacteristics =  DataBits = 8 , StopBits = 1 ,Parity = 2"
+                        + Environment.NewLine + "     SetFlowControl = No flow control"
+                        );
+                }
+            }
+
+
             public void Write(byte command, ulong DATA)
             {
+
                 byte[] Send = new byte[6];
                 // 命令
                 Send[0] = (byte)(command & 0xFF);
@@ -145,10 +340,12 @@ namespace A4_BurstMode_test
             }
         }
 
-
         public class MAX11270_AD_Converter
         {
             private FTDI_Ctrl ctrl;
+            private FTDI FtdiBurstRead;
+            private FTDI FtdiNormalCtrl;
+            //public MAX11270_AD_Converter(FTDI_Ctrl FtdiBurstRead, FTDI_Ctrl FtdiNormalCtrl);
             public MAX11270_AD_Converter(FTDI_Ctrl ctrl)
             {
                 this.ctrl = ctrl;
@@ -338,173 +535,9 @@ namespace A4_BurstMode_test
 
     }
 
-    class TestUnit
-    {
-        static FTDI ftdi = new FTDI();
-        public static void Test()
-        {
-            // 初始化 FTDI 裝置
-            fn_Ftdi_Init(out int FtdiCount);
-            fn_Ftdi_Connect(FtdiCount, 0);
-            fn_Ftdi_Setting(FtdiCount);
-
-            // 初始化 A4_MotherBoard
-            A4_MotherBoard motherboard = new A4_MotherBoard(ftdi);
-            fn_IfConnectedWillMakeSound(motherboard);//目前完成到這裡
-            motherboard.Ctrl.Write(0x00, 0x09);
-            uint data = motherboard.Ctrl.Read(out byte Addr);
-            bool a = motherboard.ADConverter.AD1.IsReady;
-            bool b = motherboard.ADConverter.AD2.IsReady;
-            bool c = motherboard.ADConverter.AD3.IsReady;
-            bool d = motherboard.ADConverter.AD4.IsReady;
-
-            bool a1 = motherboard.ADConverter.AD1.IsBusy;
-            bool b1 = motherboard.ADConverter.AD2.IsBusy;
-            bool c1 = motherboard.ADConverter.AD3.IsBusy;
-            bool d1 = motherboard.ADConverter.AD4.IsBusy;
-
-            // 配置 ADC 控制寄存器
-            var adcControlPack = new A4_MotherBoard.MAX11270_AD_Converter.ADC_Control_0x16_Pack
-            {
-                Bit29 = 1, // Enable ADC2
-                Bit28 = 0xCD, // Enable automatic read for ADC2
-                Bit27 = 1, // Read from ADC2
-                Bit26_24 = 0b100, // 4 bytes for ADC2
-                Bit23_16 = 0x01, // Example command for ADC2
-                Bit13 = 1, // Enable ADC1
-                Bit12 = 0xCD, // Enable automatic read for ADC1
-                Bit11 = 0, // Read from ADC1
-                Bit10_8 = 0b100, // 4 bytes for ADC1
-                Bit7_0 = 0x01 // Example command for ADC1
-            };
-            //motherboard.ADConverter.ADC_Control_0x16(adcControlPack);
-            //// 等待 ADC 準備好數據
-            //while (!motherboard.ADConverter.AD1.IsReady || !motherboard.ADConverter.AD2.IsReady)
-            //{
-            //    Thread.Sleep(10); // 避免忙等
-            //}
-            //// 讀取數據（假設每個通道返回4字節數據）
-            //byte[] ad1Data = motherboard.ADConverter.ctrl.Read(4);
-            //byte[] ad2Data = motherboard.ADConverter.ctrl.Read(4);
-            //Console.WriteLine("ADC1 Data: " + BitConverter.ToString(ad1Data));
-            //Console.WriteLine("ADC2 Data: " + BitConverter.ToString(ad2Data));
-        }
 
 
-        #region ftdi funtion
-        static public string fn_Ftdi_Init(out int FindFtdiCount)
-        {
-            // 取得裝置數量
-            uint ftdiDeviceCount = 0;
-            FindFtdiCount = (int)ftdiDeviceCount;
-            FTDI.FT_STATUS status = ftdi.GetNumberOfDevices(ref ftdiDeviceCount);
 
-            if (status != FTDI.FT_STATUS.FT_OK || ftdiDeviceCount == 0)
-            {
-                ftdi.GetDescription(out string ftdiDescription);
-                MessageBox.Show("無法取得 FTDI 裝置數量" + ftdiDescription);
-                return "找不到 FTDI 裝置";
-            }
-
-            FindFtdiCount = (int)ftdiDeviceCount;
-            Console.WriteLine("找到 " + ftdiDeviceCount + " 個 FTDI 裝置");
-            return $"找到 {ftdiDeviceCount} 個裝置";
-        }
-
-        static public string fn_Ftdi_Connect(int count, int Index)
-        {
-            FTDI.FT_DEVICE_INFO_NODE[] deviceList = new FTDI.FT_DEVICE_INFO_NODE[count];
-            FTDI.FT_STATUS status = ftdi.GetDeviceList(deviceList);
-            if (status != FTDI.FT_STATUS.FT_OK)
-            {
-                ftdi.GetDescription(out string ftdiDescription);
-                MessageBox.Show("無法取得裝置清單，請檢查連接或驅動程式" + ftdiDescription);
-                return ("無法取得裝置清單");
-            }
-
-            if (ftdi.IsOpen != true)
-            {
-                if (ftdi.OpenByIndex((uint)Index) != FTDI.FT_STATUS.FT_OK)
-                {
-                    ftdi.GetDescription(out string ftdiDescription);
-                    MessageBox.Show("無法開啟 FTDI 裝置，請檢查連接或驅動程式。" + ftdiDescription);
-                }
-            }
-            status = ftdi.GetDeviceList(deviceList);
-
-
-            if (status != FTDI.FT_STATUS.FT_OK || !ftdi.IsOpen)
-            {
-
-                ftdi.GetDescription(out string ftdiDescription);
-                MessageBox.Show("無法開啟裝置: " + ftdiDescription);
-                return ("無法開啟裝置" + ftdiDescription);
-            }
-            else if (status == FTDI.FT_STATUS.FT_OK && ftdi.IsOpen)
-            {
-                ftdi.GetDescription(out string ftdiDescription);
-                //fn_FeedBackMessage("裝置已開啟: " + ftdiDescription);
-                Console.WriteLine("裝置已開啟: " + ftdiDescription);
-                return ("裝置已開啟" + ftdiDescription);
-            }
-            else
-            {
-                return (status.ToString());
-            }
-        }
-
-        static public string fn_Ftdi_Setting(int count)
-        {
-            ftdi.SetLatency(0);
-            ftdi.SetBaudRate(115200);
-            ftdi.SetDataCharacteristics(8, 1, 2); // 8-1-Even // 0-4=None,Odd,Even,Mark,Space
-            ftdi.SetFlowControl(FTDI.FT_FLOW_CONTROL.FT_FLOW_NONE, 0x11, 0x13); // 無 flow control
-
-            FTDI.FT_DEVICE_INFO_NODE[] deviceList = new FTDI.FT_DEVICE_INFO_NODE[count];
-            FTDI.FT_STATUS status = ftdi.GetDeviceList(deviceList);
-            if (status != FTDI.FT_STATUS.FT_OK)
-            {
-                return ("無法取得裝置清單");
-            }
-            else
-            {
-                return ("裝置設定成功 "
-                    + Environment.NewLine + "     SetLatency = 0"
-                    + Environment.NewLine + "     SetBaudRate = 115200"
-                    + Environment.NewLine + "     SetDataCharacteristics =  DataBits = 8 , StopBits = 1 ,Parity = 2"
-                    + Environment.NewLine + "     SetFlowControl = No flow control"
-                    );
-            }
-        }
-
-        static public void fn_IfConnectedWillMakeSound(A4_MotherBoard motherboard)
-        {
-            motherboard.Ctrl.Write(0x01, 0x20000);
-            //motherboard.Ctrl.Write(0x01, 0x20000);
-            Thread.Sleep(100);
-
-            motherboard.Ctrl.Write(0x01, 0x00000);
-            //motherboard.Ctrl.Write(0x01, 0x00000);
-            Thread.Sleep(50);
-
-            motherboard.Ctrl.Write(0x01, 0x20000);
-            //motherboard.Ctrl.Write(0x01, 0x20000);
-            Thread.Sleep(50);
-
-            motherboard.Ctrl.Write(0x01, 0x00000);
-            //motherboard.Ctrl.Write(0x01, 0x00000);
-            Thread.Sleep(50);
-
-            motherboard.Ctrl.Write(0x01, 0x20000);
-            //motherboard.Ctrl.Write(0x01, 0x20000);
-            Thread.Sleep(50);
-
-            motherboard.Ctrl.Write(0x01, 0x00000);
-            //motherboard.Ctrl.Write(0x01, 0x00000);
-            Thread.Sleep(50);
-        }
-        #endregion
-    }
 
 
 }
