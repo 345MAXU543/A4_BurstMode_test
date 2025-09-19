@@ -77,6 +77,32 @@ namespace A4_BurstMode_test
             //motherboard.Ctrl.Write(0x01, 0x00000);
             Thread.Sleep(50);
         }
+
+      
+
+        private void btn_exit_Click(object sender, MouseButtonEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void btn_windowMin_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
+
+        private void ToggleNav(object sender, RoutedEventArgs e)
+        {
+            if (grd_SideManu.Margin.Right< 1512)
+            {
+                // 收合
+                grd_SideManu.Margin = new Thickness(0,30,1552,0);
+            }
+            else
+            {
+                // 展開
+                grd_SideManu.Margin = new Thickness(0, 30, 1400, 0);
+            }
+        }
     }
 
     class TestUnit//同時是使用範例
