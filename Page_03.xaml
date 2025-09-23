@@ -1,0 +1,366 @@
+﻿<Page x:Class="A4_BurstMode_test.Page_03"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:A4_BurstMode_test"
+      mc:Ignorable="d" 
+        d:DesignHeight="969.8" d:DesignWidth="1499.8"
+  Title="Page_03" Loaded="Page_Loaded">
+    <!--d:DesignHeight="969.8" d:DesignWidth="1499.8"
+      Title="Page_03">-->
+
+
+    <Grid Background="#FF23262B">
+        <Border CornerRadius="15,15,0,0"
+        Padding="5"
+        Margin="10,10,0,0"
+        HorizontalAlignment="Left"
+        VerticalAlignment="Top" Height="50">
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF394352"/>
+                    <GradientStop Color="#FF23262B" Offset="1"/>
+                    <GradientStop Color="#FF394352" Offset="0.604"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <TextBlock Text=" MAX11270 A/D Converter "
+               FontSize="28"
+               Foreground="White"/>
+        </Border>
+
+        <Rectangle Height="5" HorizontalAlignment="Left" Margin="0,55,0,0" VerticalAlignment="Top" Width="1509">
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" Opacity="1">
+                    <LinearGradientBrush.RelativeTransform>
+                        <TransformGroup>
+                            <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                            <SkewTransform CenterX="0.5" CenterY="0.5"/>
+                            <RotateTransform Angle="89.5" CenterX="0.5" CenterY="0.5"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </LinearGradientBrush.RelativeTransform>
+                    <GradientStop Color="#FF23262B"/>
+                    <GradientStop Color="#FF394352" Offset="1"/>
+                    <GradientStop Color="#FF394352" Offset="0.179"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+
+
+        <Grid Margin="0,65,0,0" >
+
+
+            <!--ADC12_ctrL-->
+            <Border Background="#FF202B3C" 
+            CornerRadius="20" 
+            Margin="40,10,40,0"
+            VerticalAlignment="Top"
+            Height="442"
+            Panel.ZIndex="0">
+                <Button x:Name="btn_Send_0x16" Content="SEND"  Margin="1229,277,26,15" FontSize="40" Background="#FF394352" Foreground="White" Height="150" Width="165">
+                    <Button.Template>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border Background="#FF394352"
+                                CornerRadius="15"   
+                                BorderThickness="0">
+                                <ContentPresenter HorizontalAlignment="Center"
+                                  VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </Border>
+            <DataGrid x:Name="dataGrid_ADC12_CTRL_0x16"
+              AutoGenerateColumns="False"
+              CanUserAddRows="False"
+              CanUserDeleteRows="False"
+              CanUserResizeRows="False"
+              HeadersVisibility="Column"
+              GridLinesVisibility="All"
+              Foreground="White"
+              Background="#FF2E3238"
+              RowBackground="#FF2E3238"
+              AlternatingRowBackground="#FF3A3F47"
+              BorderBrush="#FF394352"
+              BorderThickness="1"
+              FontSize="16"
+              VerticalAlignment="Top"
+              Height="207" Margin="58,62,56,0">
+                <DataGrid.Resources>
+                    <!-- 標題列樣式 -->
+                    <Style TargetType="{x:Type DataGridColumnHeader}">
+                        <Setter Property="Background" Value="#FF394352"/>
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="FontSize" Value="16"/>
+                        <Setter Property="Padding" Value="8,4"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                    </Style>
+                </DataGrid.Resources>
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="7(MSB)" Binding="{Binding ADC12_CTRL_Col_7}" Width="*"/>
+                    <DataGridTextColumn Header="6" Binding="{Binding ADC12_CTRL_Col_6}" Width="*"/>
+                    <DataGridTextColumn Header="5" Binding="{Binding ADC12_CTRL_Col_5}" Width="*"/>
+                    <DataGridTextColumn Header="4" Binding="{Binding ADC12_CTRL_Col_4}" Width="*"/>
+                    <DataGridTextColumn Header="3" Binding="{Binding ADC12_CTRL_Col_3}" Width="*"/>
+                    <DataGridTextColumn Header="2" Binding="{Binding ADC12_CTRL_Col_2}" Width="*"/>
+                    <DataGridTextColumn Header="1" Binding="{Binding ADC12_CTRL_Col_1}" Width="*"/>
+                    <DataGridTextColumn Header="0" Binding="{Binding ADC12_CTRL_Col_0}" Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Border CornerRadius="15,15,0,0"
+Padding="5"
+Margin="58,14,0,0"
+HorizontalAlignment="Left"
+VerticalAlignment="Top" Height="48" Width="355">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF394352"/>
+                        <GradientStop Color="#FF23262B" Offset="1"/>
+                        <GradientStop Color="#FF394352" Offset="0.604"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+                <TextBlock Text=" ADC12_CTRL 0x16 "
+    FontSize="28"
+    Foreground="White"/>
+            </Border>
+            <WrapPanel Margin="58,287,554,453" Height="165" Panel.ZIndex="1" >
+                <TextBlock Text=" Bit31~30 = " FontSize="28" Foreground="White" Width="161"/>
+                <ComboBox x:Name="cb3130_0x16" Width="131" Height="32" FontSize="20">
+                    <ComboBoxItem Content="00" FontSize="25" IsSelected="True"/>
+                </ComboBox>
+
+                <TextBlock Text=" Bit29 = " FontSize="28" Foreground="White" Width="100"/>
+                <ComboBox x:Name="cb29_0x16" Width="172" Height="32" FontSize="20">
+                    <ComboBoxItem Content="0" FontSize="25"/>
+                    <ComboBoxItem Content="1" FontSize="25"/>
+                </ComboBox>
+
+                <TextBlock Text=" Bit27 = " FontSize="28" Foreground="White" Width="109"/>
+                <ComboBox x:Name="cb27_0x16" Width="161" Height="32" FontSize="20">
+                    <ComboBoxItem Content="0" FontSize="25"/>
+                    <ComboBoxItem Content="1" FontSize="25"/>
+                </ComboBox>
+
+
+                <TextBlock Text=" Bit26~24 = " FontSize="28" Foreground="White" Width="162"/>
+                <ComboBox x:Name="cb2624_0x16" Width="130" Height="32" FontSize="20">
+                    <ComboBoxItem Content="000" FontSize="25"/>
+                    <ComboBoxItem Content="001" FontSize="25"/>
+                    <ComboBoxItem Content="010" FontSize="25"/>
+                    <ComboBoxItem Content="011" FontSize="25"/>
+                    <ComboBoxItem Content="100" FontSize="25"/>
+                    <ComboBoxItem Content="101" FontSize="25"/>
+                    <ComboBoxItem Content="110" FontSize="25"/>
+                    <ComboBoxItem Content="111" FontSize="25"/>
+                </ComboBox>
+
+                <TextBlock Text=" Bit23~16 = " FontSize="28" Foreground="White" Width="161"/>
+                <TextBox x:Name="txt2316_0x16" Width="111" Height="35" FontSize="20"/>
+
+                <TextBlock Text=" Bit15~14 = " FontSize="28" Foreground="White" Width="161"/>
+                <ComboBox x:Name="cb1514_0x16" Width="109" Height="32" FontSize="20">
+                    <ComboBoxItem Content="00" FontSize="25"/>
+                </ComboBox>
+
+                <TextBlock Text=" Bit13 = " FontSize="28" Foreground="White" Width="108"/>
+                <ComboBox x:Name="cb13_0x16" Width="184" Height="32" FontSize="20">
+                    <ComboBoxItem Content="0" FontSize="25"/>
+                    <ComboBoxItem Content="1" FontSize="25"/>
+                </ComboBox>
+
+                <TextBlock Text=" Bit12 = " FontSize="28" Foreground="White" Width="103"/>
+                <ComboBox x:Name="cb12_0x16" Width="169" Height="32" FontSize="20">
+                    <ComboBoxItem Content="0" FontSize="25"/>
+                    <ComboBoxItem Content="1" FontSize="25"/>
+                </ComboBox>
+
+                <TextBlock Text=" Bit11 = " FontSize="28" Foreground="White" Width="104"/>
+                <ComboBox x:Name="cb11_0x16" Width="166" Height="32" FontSize="20">
+                    <ComboBoxItem Content="0" FontSize="25"/>
+                    <ComboBoxItem Content="1" FontSize="25"/>
+                </ComboBox>
+
+
+                <TextBlock Text=" Bit10~8 = " FontSize="28" Foreground="White" Width="144"/>
+                <ComboBox x:Name="cb1008_0x16" Width="148" Height="32" FontSize="20">
+                    <ComboBoxItem Content="000" FontSize="25"/>
+                    <ComboBoxItem Content="001" FontSize="25"/>
+                    <ComboBoxItem Content="010" FontSize="25"/>
+                    <ComboBoxItem Content="011" FontSize="25"/>
+                    <ComboBoxItem Content="100" FontSize="25"/>
+                    <ComboBoxItem Content="101" FontSize="25"/>
+                    <ComboBoxItem Content="110" FontSize="25"/>
+                    <ComboBoxItem Content="111" FontSize="25"/>
+                </ComboBox>
+
+                <TextBlock Text=" Bit7~0 = " FontSize="28" Foreground="White" Width="128"/>
+                <TextBox x:Name="txt0700_0x16" Width="144" Height="35" FontSize="20" />
+            </WrapPanel>
+
+            <WrapPanel HorizontalAlignment="Left" VerticalAlignment="Top" Width="360" Margin="904,287,0,0">
+                <TextBlock Text=" AD1 " FontSize="20" Foreground="White" Width="95" TextAlignment="Right"/>
+                <TextBlock x:Name="txt_ad1Busy" Text=" Busy " FontSize="20" Foreground="White" Width="128" TextAlignment="Center" Background="#FFD82323"/>
+                <TextBlock x:Name="txt_ad1Rdy" Text=" RDY " FontSize="20" Foreground="White" Width="128" TextAlignment="Center" Background="#FF3BC30B"/>
+
+                <TextBlock Text=" AD2 " FontSize="20" Foreground="White" Width="95" TextAlignment="Right" Padding="0,2,0,0"/>
+                <TextBlock x:Name="txt_ad2Busy" Text=" Busy " FontSize="20" Foreground="White" Width="128" TextAlignment="Center" Background="#FFD82323" Padding="0,2,0,0"/>
+                <TextBlock x:Name="txt_ad2Rdy" Text=" RDY " FontSize="20" Foreground="White" Width="128" TextAlignment="Center" Background="#FF3BC30B" Padding="0,2,0,0"/>
+
+                <TextBlock Text=" AD3 " FontSize="20" Foreground="White" Width="95" TextAlignment="Right"/>
+                <TextBlock x:Name="txt_ad3Busy" Text=" Busy " FontSize="20" Foreground="White" Width="128" TextAlignment="Center" Background="#FFD82323"/>
+                <TextBlock x:Name="txt_ad3Rdy" Text=" RDY " FontSize="20" Foreground="White" Width="128" TextAlignment="Center" Background="#FF3BC30B"/>
+
+                <TextBlock Text=" AD4 " FontSize="20" Foreground="White" Width="95" TextAlignment="Right"/>
+                <TextBlock x:Name="txt_ad4Busy" Text=" Busy " FontSize="20" Foreground="White" Width="128" TextAlignment="Center" Background="#FFD82323"/>
+                <TextBlock x:Name="txt_ad4Rdy" Text=" RDY " FontSize="20" Foreground="White" Width="128" TextAlignment="Center" Background="#FF3BC30B"/>
+
+
+            </WrapPanel>
+            <Button x:Name="btn_AskBusy" Content="Busy or not?"  Margin="999,396,245,468" FontSize="30" Background="#FF394352" Foreground="White">
+                <Button.Template>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="#FF394352"
+             CornerRadius="10"   
+             BorderThickness="0">
+                            <ContentPresenter HorizontalAlignment="Center"
+               VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
+            <!--WR-->
+            <Border Background="#FF202B3C" 
+CornerRadius="20" 
+Margin="43,466,759,0"
+VerticalAlignment="Top"
+Height="403"
+Panel.ZIndex="0">
+            </Border>
+            <DataGrid x:Name="dataGrid_ADC1WR"
+                AutoGenerateColumns="False"
+                CanUserAddRows="False"
+                CanUserDeleteRows="False"
+                CanUserResizeRows="False"
+                HeadersVisibility="Column"
+                GridLinesVisibility="All"
+                Foreground="White"
+                Background="#FF2E3238"
+                RowBackground="#FF2E3238"
+                AlternatingRowBackground="#FF3A3F47"
+                BorderBrush="#FF394352"
+                BorderThickness="1"
+                FontSize="16"
+                VerticalAlignment="Top"
+                Height="207" Margin="59,477,776,0">
+                <DataGrid.Resources>
+                    <!-- 標題列樣式 -->
+                    <Style TargetType="{x:Type DataGridColumnHeader}">
+                        <Setter Property="Background" Value="#FF394352"/>
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="FontSize" Value="16"/>
+                        <Setter Property="Padding" Value="8,4"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                    </Style>
+                </DataGrid.Resources>
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="7(MSB)" Binding="{Binding ADC12_CTRL_Col_7}" Width="*"/>
+                    <DataGridTextColumn Header="6" Binding="{Binding ADC12_CTRL_Col_6}" Width="*"/>
+                    <DataGridTextColumn Header="5" Binding="{Binding ADC12_CTRL_Col_5}" Width="*"/>
+                    <DataGridTextColumn Header="4" Binding="{Binding ADC12_CTRL_Col_4}" Width="*"/>
+                    <DataGridTextColumn Header="3" Binding="{Binding ADC12_CTRL_Col_3}" Width="*"/>
+                    <DataGridTextColumn Header="2" Binding="{Binding ADC12_CTRL_Col_2}" Width="*"/>
+                    <DataGridTextColumn Header="1" Binding="{Binding ADC12_CTRL_Col_1}" Width="*"/>
+                    <DataGridTextColumn Header="0" Binding="{Binding ADC12_CTRL_Col_0}" Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Button x:Name="btn_Ad1WR" Content="Write"  Margin="559,702,776,53" FontSize="40" Background="#FF394352" Foreground="White" Height="150" Width="165">
+                <Button.Template>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="#FF394352"
+         CornerRadius="10"   
+         BorderThickness="0">
+                            <ContentPresenter HorizontalAlignment="Center"
+           VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <TextBlock Text="BIN : " FontSize="28" Foreground="White" Margin="59,699,1378,164"/>
+            <TextBox x:Name="txt2316_0x162" FontSize="20" Margin="122,702,954,167"/>
+            <TextBlock Text="HEX : " FontSize="28" Foreground="White" Margin="52,749,1378,116"/>
+            <TextBox x:Name="txt2316_0x1" Height="35" FontSize="20" Margin="122,751,954,119"/>
+
+
+
+            <!--RD-->
+            <Border Background="#FF202B3C" 
+      CornerRadius="20" 
+      Margin="758,466,40,0"
+      VerticalAlignment="Top"
+      Height="403"
+      Panel.ZIndex="0"/>
+            <DataGrid x:Name="dataGrid_ADCRD"
+       AutoGenerateColumns="False"
+       CanUserAddRows="False"
+       CanUserDeleteRows="False"
+       CanUserResizeRows="False"
+       HeadersVisibility="Column"
+       GridLinesVisibility="All"
+       Foreground="White"
+       Background="#FF2E3238"
+       RowBackground="#FF2E3238"
+       AlternatingRowBackground="#FF3A3F47"
+       BorderBrush="#FF394352"
+       BorderThickness="1"
+       FontSize="16"
+       VerticalAlignment="Top"
+       Height="207" Margin="777,477,58,0">
+                <DataGrid.Resources>
+                    <!-- 標題列樣式 -->
+                    <Style TargetType="{x:Type DataGridColumnHeader}">
+                        <Setter Property="Background" Value="#FF394352"/>
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="FontSize" Value="16"/>
+                        <Setter Property="Padding" Value="8,4"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                    </Style>
+                </DataGrid.Resources>
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="7(MSB)" Binding="{Binding ADC12_CTRL_Col_7}" Width="*"/>
+                    <DataGridTextColumn Header="6" Binding="{Binding ADC12_CTRL_Col_6}" Width="*"/>
+                    <DataGridTextColumn Header="5" Binding="{Binding ADC12_CTRL_Col_5}" Width="*"/>
+                    <DataGridTextColumn Header="4" Binding="{Binding ADC12_CTRL_Col_4}" Width="*"/>
+                    <DataGridTextColumn Header="3" Binding="{Binding ADC12_CTRL_Col_3}" Width="*"/>
+                    <DataGridTextColumn Header="2" Binding="{Binding ADC12_CTRL_Col_2}" Width="*"/>
+                    <DataGridTextColumn Header="1" Binding="{Binding ADC12_CTRL_Col_1}" Width="*"/>
+                    <DataGridTextColumn Header="0" Binding="{Binding ADC12_CTRL_Col_0}" Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Button x:Name="btn_Ad1RD" Content="Read"  Margin="1277,702,58,53" FontSize="40" Background="#FF394352" Foreground="White" Height="150" Width="165">
+                <Button.Template>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="#FF394352"
+CornerRadius="10"   
+BorderThickness="0">
+                            <ContentPresenter HorizontalAlignment="Center"
+  VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <TextBlock Text="BIN : " FontSize="28" Foreground="White" Margin="777,700,660,165"/>
+            <TextBox x:Name="txt23w16_0x162" FontSize="20" Margin="845,702,231,168"/>
+            <TextBlock Text="HEX : " FontSize="28" Foreground="White" Margin="770,742,660,123"/>
+            <TextBox x:Name="txt231w6_0x1" Height="35" FontSize="20" Margin="845,742,231,128"/>
+
+
+        </Grid>
+
+
+    </Grid>
+</Page>

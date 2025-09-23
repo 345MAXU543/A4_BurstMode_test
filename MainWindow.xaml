@@ -20,7 +20,7 @@
             </Grid.Background>
 
             <Rectangle Margin="0,0,0,0"/>
-            <Label Content="  A4MB SDK Test tool  " HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Foreground="White">
+            <Label Content="  A4MB SDK Test tool  " HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20" Foreground="White" MouseDown="Label_MouseDown" Padding="0,5,0,0">
                 <Label.Background>
                     <SolidColorBrush Color="#FF1B1A1A" Opacity="0.5"/>
                 </Label.Background>
@@ -51,28 +51,66 @@
                 </Label.Background>
             </Label>
             <Label Content="  " Margin="1527,0,49,11" RenderTransformOrigin="0.5,0.5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#FFEC2525" Foreground="Red" FontSize="22" VerticalAlignment="Bottom" Height="2" MouseUp="btn_windowMin_MouseUp"/>
-
+            <Rectangle HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="1504" MouseDown="Label_MouseDown">
+                <Rectangle.Fill>
+                    <SolidColorBrush Color="Black" Opacity="0"/>
+                </Rectangle.Fill>
+                <Rectangle.Stroke>
+                    <SolidColorBrush Color="Black" Opacity="0"/>
+                </Rectangle.Stroke>
+            </Rectangle>
 
         </Grid>
-
-        
 
         <!--Main content-->
-        <Grid Margin="64,104,0,0">
-            <Button Content="Button" HorizontalAlignment="Left" Margin="825,291,0,0" VerticalAlignment="Top" Height="93" Width="228"/>
-            <Button Content="Button" HorizontalAlignment="Left" Margin="1186,357,0,0" VerticalAlignment="Top" Height="78" Width="140"/>
-            <Button Content="Button" HorizontalAlignment="Left" Margin="432,401,0,0" VerticalAlignment="Top" Height="124" Width="252"/>
-
+        <Grid x:Name="grd_mainContent" Margin="100,30,0,0">
+            <Frame x:Name="Frame_mainFrame" NavigationUIVisibility="Hidden">
+                <Frame.RenderTransform>
+                    <TranslateTransform x:Name="frameTransform" X="0"/>
+                </Frame.RenderTransform>
+            </Frame>
+            <Rectangle x:Name="rectOverlay"
+         Fill="Black"
+         Opacity="0"
+         IsHitTestVisible="False"/>
         </Grid>
-        
+
         <!--Side Manu-->
-        <Grid x:Name="grd_SideManu"  Background="#FF2D3137" Margin="0,30,1512,0" >
+        <Grid x:Name="grd_SideManu"  Background="#FF2D3137" Margin="0,30,1500,0" MouseEnter="grd_SideManu_MouseEnter_1" MouseLeave="grd_SideManu_MouseLeave" >
             <StackPanel Background="#2D2D30" Grid.Column="0">
-                <Button Content="收合" Click="ToggleNav"/>
-                <Button Content="首頁"/>
-                <Button Content="報表"/>
+
+
+                <Button x:Name="img_SIdeManu_btn01" Height="87" Width="300" Cursor="Hand" Click="img_SIdeManu_btn_Click" Tag="1" Background="#FFB4D8E4" >
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <Image Source="/CPU_Icon.png" Width="70" Height="70" Margin="-60,0,0,0"/>
+                        <TextBlock Text="CPU操作" VerticalAlignment="Center" Foreground="#FF07045F" FontSize="30" Margin="15,0,0,0"/>
+                    </StackPanel>
+                </Button>
+
+                <Button x:Name="img_SIdeManu_btn02" Height="87" Width="300" Cursor="Hand" Click="img_SIdeManu_btn_Click" Tag="2" >
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <Image Source="/HandWheel_Icon.png"  Width="70" Height="70" Margin="-60,0,0,0"/>
+                        <TextBlock Text="ENC操作" VerticalAlignment="Center" Foreground="#FF07045F" FontSize="30" Margin="15,0,0,0"/>
+                    </StackPanel>
+                </Button>
+
+                <Button x:Name="img_SIdeManu_btn03" Height="87" Width="300" Cursor="Hand" Click="img_SIdeManu_btn_Click" Tag="3" >
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <Image Source="/LoadCell_Icon.png"  Width="70" Height="70" Margin="-60,0,0,0"/>
+                        <TextBlock Text="L.C.  操作" VerticalAlignment="Center" Foreground="#FF07045F" FontSize="30" Margin="15,0,0,0"/>
+                    </StackPanel>
+                </Button>
+
+                <Button x:Name="img_SIdeManu_btn04" Height="87" Width="300" Cursor="Hand" Click="img_SIdeManu_btn_Click" Tag="4" >
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <Image Source="/RAM_Icon.png"  Width="70" Height="70" Margin="-25,0,0,0"/>
+                        <TextBlock Text="PROM 操作" VerticalAlignment="Center" Foreground="#FF07045F" FontSize="30" Margin="15,0,0,0"/>
+                    </StackPanel>
+                </Button>
+
+
             </StackPanel>
         </Grid>
-        
+
     </Grid>
 </Window>

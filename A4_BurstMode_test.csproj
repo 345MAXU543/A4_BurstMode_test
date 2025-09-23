@@ -99,8 +99,36 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Page_02.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Page_03.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Page_04.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Page_01.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Page_02.xaml.cs">
+      <DependentUpon>Page_02.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Page_03.xaml.cs">
+      <DependentUpon>Page_03.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Page_04.xaml.cs">
+      <DependentUpon>Page_04.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Page_01.xaml.cs">
+      <DependentUpon>Page_01.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -140,7 +168,19 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="16pic_2497369_b.jpg" />
+    <Folder Include="ICON\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="CPU_Icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="LoadCell_Icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="HandWheel_Icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="RAM_Icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

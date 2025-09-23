@@ -17,6 +17,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Markup;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -34,6 +35,8 @@ namespace A4_BurstMode_test
 
         // 初始化 A4_MotherBoard並傳入四個 FTDI 物件
         static A4MB A4Motherboard = new A4MB(Ftdi_USB_A, Ftdi_USB_B, Ftdi_USB_C, Ftdi_USB_D);
+
+        int NowPage = 1;
         public MainWindow()
         {
             InitializeComponent();
@@ -48,7 +51,9 @@ namespace A4_BurstMode_test
             A4Motherboard.Ftdi_Ctrl_USB_C.FTDI_Preprocessing("20241018C");
             // motherboard.Ftdi_Ctrl_USB_D.FTDI_Preprocessing("20241018D");
 
-          //  MakeA4HardwareBeepBeepSound(A4Motherboard);
+            //  MakeA4HardwareBeepBeepSound(A4Motherboard);
+
+            Frame_mainFrame.Navigate(new Page_01());
         }
 
         private void MakeA4HardwareBeepBeepSound(A4MB motherboard)
@@ -78,7 +83,7 @@ namespace A4_BurstMode_test
             Thread.Sleep(50);
         }
 
-      
+
 
         private void btn_exit_Click(object sender, MouseButtonEventArgs e)
         {
@@ -90,20 +95,119 @@ namespace A4_BurstMode_test
             this.WindowState = WindowState.Minimized;
         }
 
-        private void ToggleNav(object sender, RoutedEventArgs e)
+
+
+        private void Label_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (grd_SideManu.Margin.Right< 1512)
+            DragMove();
+        }
+
+
+        private void grd_SideManu_MouseEnter_1(object sender, MouseEventArgs e)
+        {
+            var target = new Thickness(0, 30, 1300, 0);
+            var anim = new ThicknessAnimation
             {
-                // 收合
-                grd_SideManu.Margin = new Thickness(0,30,1552,0);
-            }
-            else
+                To = target,
+                Duration = TimeSpan.FromMilliseconds(150), // 動畫時間
+                EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseInOut }
+            };
+
+            // 執行動畫 (Margin 是依附屬性)
+            grd_SideManu.BeginAnimation(FrameworkElement.MarginProperty, anim);
+
+            var fadeIn = new DoubleAnimation
             {
-                // 展開
-                grd_SideManu.Margin = new Thickness(0, 30, 1400, 0);
+                To = 0.5, // 半透明黑
+                Duration = TimeSpan.FromMilliseconds(150)
+            };
+            rectOverlay.BeginAnimation(UIElement.OpacityProperty, fadeIn);
+        }
+
+        private void grd_SideManu_MouseLeave(object sender, MouseEventArgs e)
+        {
+            var target = new Thickness(0, 30, 1500, 0);
+            var anim = new ThicknessAnimation
+            {
+                To = target,
+                Duration = TimeSpan.FromMilliseconds(150), // 動畫時間
+                EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseInOut }
+            };
+
+            // 執行動畫 (Margin 是依附屬性)
+            grd_SideManu.BeginAnimation(FrameworkElement.MarginProperty, anim);
+
+            var fadeOut = new DoubleAnimation
+            {
+                To = 0, // 全透明
+                Duration = TimeSpan.FromMilliseconds(150)
+            };
+            rectOverlay.BeginAnimation(UIElement.OpacityProperty, fadeOut);
+        }
+
+
+        private void fn_MouseEnterSideMenuItem(object sender, MouseEventArgs e)
+        {
+            Image ima = sender as Image;
+
+        }
+
+        private void img_SIdeManu_btn_Click(object sender, RoutedEventArgs e)
+        {
+            Button [] buttons = { img_SIdeManu_btn01, img_SIdeManu_btn02, img_SIdeManu_btn03, img_SIdeManu_btn04 };
+            foreach (var btn in buttons)
+            {
+                btn.Background = (Brush)new BrushConverter().ConvertFromString("#FFDDDDDD");
             }
+
+
+            Button button = sender as Button;
+            button.Background = (Brush)new BrushConverter().ConvertFromString("#FFB4D8E4");
+
+            if (NowPage.ToString() != button.Tag.ToString())
+            {
+
+                switch (button.Tag)
+                {
+                    case "1":
+                        Frame_mainFrame.Navigate(new Page_01());
+                        NowPage = 1;
+                        break;
+
+                    case "2":
+                        Frame_mainFrame.Navigate(new Page_02());
+                        NowPage = 2;
+                        break;
+
+                    case "3":
+                        Frame_mainFrame.Navigate(new Page_03());
+                        NowPage = 3;
+                        break;
+
+                    case "4":
+                        Frame_mainFrame.Navigate(new Page_04());
+                        NowPage = 4;
+                        break;
+                }
+
+
+                //在這邊做畫面由下往上滑入
+                var anim = new DoubleAnimation
+                {
+                    From = 1000, // 起始位置 (視窗底下，可以依實際高度調整)
+                    To = 0,     // 回到正常位置
+                    Duration = TimeSpan.FromMilliseconds(200),
+                    EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseOut }
+                };
+
+                frameTransform.BeginAnimation(TranslateTransform.XProperty, anim);
+            }
+
+
         }
     }
+
+
 
     class TestUnit//同時是使用範例
     {
