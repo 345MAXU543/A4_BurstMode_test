@@ -1447,25 +1447,25 @@ namespace A4_BurstMode_test.A4_MB_SDK
 
                 return val;
             }
-            public double ReadContinuous_AD1_24bit(double vRef, double mvPerV, double fullScaleKg)
+
+            public double ReadContinuous_AD1_24bit()
             {
-                uint? raw = ctrl.Single_Read(Rcmd_ADC1_READ24);
+                uint? raw = ctrl.Single_Read24(Rcmd_ADC1_READ24);
                 if (raw == null) return double.NaN;
 
                 int val = (int)raw;
-                if ((val & 0x800000) != 0) val |= unchecked((int)0xFF000000);
+                //if ((val & 0x800000) != 0) val |= unchecked((int)0xFF000000);
 
                 return val;
             }
 
-
-            public double ReadContinuous_AD2_24bit(double vRef, double mvPerV, double fullScaleKg)
+            public double ReadContinuous_AD2_24bit()
             {
-                uint? raw = ctrl.Single_Read(Rcmd_ADC2_READ24);
+                uint? raw = ctrl.Single_Read24(Rcmd_ADC2_READ24);
                 if (raw == null) return double.NaN;
 
                 int val = (int)raw;
-                if ((val & 0x800000) != 0) val |= unchecked((int)0xFF000000);
+                //if ((val & 0x800000) != 0) val |= unchecked((int)0xFF000000);
 
                 return val;
             }

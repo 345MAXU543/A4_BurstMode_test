@@ -375,15 +375,20 @@ namespace A4_BurstMode_test
         // 🧠 高速取樣任務
         private void HighSpeedAdcLoop(CancellationToken token)
         {
-            double TargetHz = 2000;
+            double TargetHz = 1000;
             Stopwatch sw = Stopwatch.StartNew();
             double period = 1000.0 / TargetHz; // 毫秒
             ulong index = 0;
+            double adc1_raw32 = 0;
+            double adc2_raw32 = 0;
+            double adc1_raw24 = 0;
+            double adc2_raw24 = 0;
             while (!token.IsCancellationRequested)
             {
-                //double adc1_raw32 = 0;
-                double adc1_raw32 = ADC.ReadContinuous_AD1_32bit();
-                double adc2_raw32 = ADC.ReadContinuous_AD2_32bit();
+                //adc1_raw32 = ADC.ReadContinuous_AD1_32bit();
+                //adc2_raw32 = ADC.ReadContinuous_AD2_32bit();
+                adc1_raw24 = ADC.ReadContinuous_AD1_24bit();
+                adc2_raw24 = ADC.ReadContinuous_AD2_24bit();
 
                 double t_sec = Math.Round(sw.Elapsed.TotalMilliseconds / 1000.0, 6);
 
@@ -394,20 +399,22 @@ namespace A4_BurstMode_test
                     {
                         Index = index++,
                         X1 = t_sec,
-                        Y1 = adc1_raw32,
+                        Y1 = adc1_raw24,
                     });
 
                     ad2_dataPoints.Add(new ScottPlotFunctionDIY.dataPoint
                     {
                         Index = index++,
                         X1 = t_sec,
-                        Y1 = adc2_raw32,
+                        Y1 = adc2_raw24,
                     });
                 }
 
                 // raw24_2 = raw24;
                 global_ADC1_Load_32bit = adc1_raw32;
                 global_ADC2_Load_32bit = adc2_raw32;
+                global_ADC1_Load_24bit = adc1_raw24;
+                global_ADC2_Load_24bit = adc2_raw24;
 
                 // 控制頻率：自算延遲時間
                 double elapsed = sw.Elapsed.TotalMilliseconds % period;
