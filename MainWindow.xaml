@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:A4_BurstMode_test"
         mc:Ignorable="d"
-        Title="MainWindow" Height="1000" Width="1600" Loaded="Window_Loaded" 
-        Background="#FF23262B" WindowStyle="None" AllowsTransparency="True" BorderThickness="0.1,0.1,0.1,0.1"  >
+        Title="MainWindow" Height="1000" Width="1600" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen"
+        Background="#FF23262B" WindowStyle="None" AllowsTransparency="True" BorderThickness="0.1,0.1,0.1,0.1" ResizeMode="NoResize" >
 
     <!-- Main grid-->
     <Grid Margin="0" >
@@ -59,7 +59,6 @@
                     <SolidColorBrush Color="Black" Opacity="0"/>
                 </Rectangle.Stroke>
             </Rectangle>
-
         </Grid>
 
         <!--Main content-->
@@ -108,6 +107,12 @@
                     </StackPanel>
                 </Button>
 
+                <Button x:Name="img_SIdeManu_btn05" Height="87" Width="300" Cursor="Hand" Click="img_SIdeManu_btn_Click" Tag="5" >
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <TextBlock Text="🔥" FontSize="50" Padding="0,0,0,0"  Width="70" Height="70" Margin="-25,0,0,0"/>
+                            <TextBlock Text="Burst mode" VerticalAlignment="Center" Foreground="Red" FontSize="30" Margin="15,0,0,0"/>
+                    </StackPanel>
+                </Button>
 
             </StackPanel>
         </Grid>

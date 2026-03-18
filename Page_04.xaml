@@ -5,13 +5,239 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:A4_BurstMode_test"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="Page_04">
+      d:DesignHeight="969.8" d:DesignWidth="1499.8"
+      Title="Page_04" Loaded="Page_Loaded">
 
-    <Grid Background="#FF2A6380">
-        <TextBlock Text="這是P4"
-           FontSize="32"
-           VerticalAlignment="Center"
-           HorizontalAlignment="Center" Foreground="White"/>
+    <Grid Background="#FF23262B">
+        <Border CornerRadius="15,15,0,0"
+Padding="5"
+Margin="10,10,0,0"
+HorizontalAlignment="Left"
+VerticalAlignment="Top" Height="50">
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF394352"/>
+                    <GradientStop Color="#FF23262B" Offset="1"/>
+                    <GradientStop Color="#FF394352" Offset="0.604"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <TextBlock Text=" PROM "
+       FontSize="28"
+       Foreground="White"/>
+        </Border>
+        <Rectangle Height="5" HorizontalAlignment="Left" Margin="0,55,0,0" VerticalAlignment="Top" Width="1509">
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" Opacity="1">
+                    <LinearGradientBrush.RelativeTransform>
+                        <TransformGroup>
+                            <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                            <SkewTransform CenterX="0.5" CenterY="0.5"/>
+                            <RotateTransform Angle="89.5" CenterX="0.5" CenterY="0.5"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </LinearGradientBrush.RelativeTransform>
+                    <GradientStop Color="#FF23262B"/>
+                    <GradientStop Color="#FF394352" Offset="1"/>
+                    <GradientStop Color="#FF394352" Offset="0.179"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+
+        <Canvas Margin="0,65,0,0">
+            <Border CornerRadius="15,15,0,0"
+Padding="5"
+HorizontalAlignment="Center"
+VerticalAlignment="Top" Height="50" Canvas.Left="801" Canvas.Top="362">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF394352"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+                <TextBlock Text="Page read "
+       FontSize="28"
+       Foreground="White" Margin="0,1,0,-1"/>
+            </Border>
+
+            <Border CornerRadius="15,15,0,0"
+Padding="5"
+HorizontalAlignment="Center"
+VerticalAlignment="Top" Height="50" Canvas.Left="118" Canvas.Top="362">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF394352"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+                <TextBlock Text="Page write "
+       FontSize="28"
+       Foreground="White"/>
+            </Border>
+
+            <Border CornerRadius="15,15,0,0"
+Padding="5"
+HorizontalAlignment="Left"
+VerticalAlignment="Center" Height="50" Canvas.Left="119" Canvas.Top="10" Width="86">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF394352"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+                <TextBlock Text=" Ctrl"
+       FontSize="28"
+       Foreground="White" Margin="6,0,0,0"/>
+            </Border>
+            <Rectangle Height="266" Canvas.Left="84" Canvas.Top="59" Width="1331" Fill="#FF394352" RadiusX="22" RadiusY="22" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <Rectangle Height="15" Canvas.Left="205" Canvas.Top="44" Width="14" Fill="#FF394352" RadiusX="0" RadiusY="0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <Rectangle Height="31" Canvas.Left="205" Canvas.Top="28" Width="28" Fill="#FF23262B" RadiusX="22" RadiusY="22" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <Rectangle Height="15" Canvas.Left="105" Canvas.Top="44" Width="14" Fill="#FF394352" RadiusX="0" RadiusY="0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <Rectangle Height="31" Canvas.Left="91" Canvas.Top="28" Width="28" Fill="#FF23262B" RadiusX="22" RadiusY="22" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <Rectangle Height="434" Canvas.Left="764" Canvas.Top="412" Width="651" Fill="#FF394352" RadiusX="22" RadiusY="22" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+            <Rectangle Height="434" Canvas.Left="84" Canvas.Top="412" Width="651" Fill="#FF394352" RadiusX="22" RadiusY="22" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+            <Rectangle Height="14" Canvas.Left="272" Canvas.Top="398" Width="15" Fill="#FF394352" RadiusX="0" RadiusY="0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <Rectangle Height="30" Canvas.Left="273" Canvas.Top="382" Width="30" Fill="#FF23262B" RadiusX="22" RadiusY="22" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <Rectangle Height="14" Canvas.Left="104" Canvas.Top="398" Width="14" Fill="#FF394352" RadiusX="0" RadiusY="0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <Rectangle Height="30" Canvas.Left="88" Canvas.Top="382" Width="30" Fill="#FF23262B" RadiusX="22" RadiusY="22" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <Rectangle Height="14" Canvas.Left="949" Canvas.Top="398" Width="16" Fill="#FF394352" RadiusX="0" RadiusY="0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <Rectangle Height="30" Canvas.Left="950" Canvas.Top="382" Width="30" Fill="#FF23262B" RadiusX="22" RadiusY="22" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <Rectangle Height="14" Canvas.Left="786" Canvas.Top="398" Width="15" Fill="#FF394352" RadiusX="0" RadiusY="0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <Rectangle Height="30" Canvas.Left="771" Canvas.Top="382" Width="30" Fill="#FF23262B" RadiusX="22" RadiusY="22" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+
+            <Button x:Name="btn_RandomData" Content="Random"  FontSize="10" FontWeight="Bold" Background="#FF99C7CA" BorderThickness="2,2,2,2" BorderBrush="#FF394352" Canvas.Left="650" Canvas.Top="734" Height="19" Width="57" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btn_RandomData_Click">
+                <Button.Effect>
+                    <DropShadowEffect/>
+                </Button.Effect>
+            </Button>
+
+
+            <Label Content="CMD PAGE = 0" Canvas.Left="202" Canvas.Top="436" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" Height="40" Width="113"/>
+            <Label Content="CMD PAGE = 2" Canvas.Left="472" Canvas.Top="436" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" Height="40" Width="109"/>
+            <Label Content="CMD PAGE = 3" Canvas.Left="607" Canvas.Top="436" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" Height="40" Width="112"/>
+            <Label Content="CMD PAGE = 1" Canvas.Left="337" Canvas.Top="436" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" Height="40" Width="111"/>
+
+            <TextBox UseLayoutRounding="True" x:Name="txt_10" Canvas.Left="202" TextWrapping="Wrap" Text="FFFFFFFF" Canvas.Top="470" Width="105" HorizontalAlignment="Center" VerticalAlignment="Top" Background="#FF99C7CA" Height="27" BorderBrush="{x:Null}" FontSize="17"/>
+            <TextBox UseLayoutRounding="True" x:Name="txt_11" Canvas.Left="337" TextWrapping="Wrap" Text="FFFFFFFF" Canvas.Top="470" Width="105" HorizontalAlignment="Center" VerticalAlignment="Top" Background="#FF99C7CA" Height="27" BorderBrush="{x:Null}" FontSize="17"/>
+            <TextBox UseLayoutRounding="True" x:Name="txt_12" Canvas.Left="472" TextWrapping="Wrap" Text="FFFFFFFF" Canvas.Top="470" Width="105" HorizontalAlignment="Center" VerticalAlignment="Top" Background="#FF99C7CA" Height="27" BorderBrush="{x:Null}" FontSize="17"/>
+            <TextBox UseLayoutRounding="True" x:Name="txt_13" Canvas.Left="607" TextWrapping="Wrap" Text="FFFFFFFF" Canvas.Top="470" Width="105" HorizontalAlignment="Center" VerticalAlignment="Top" Background="#FF99C7CA" Height="27" BorderBrush="{x:Null}" FontSize="17"/>
+
+            <TextBox UseLayoutRounding="True"  x:Name="txt_20" Canvas.Left="202" TextWrapping="Wrap" Text="FFFFFFFF" Canvas.Top="520" Width="105" HorizontalAlignment="Center" VerticalAlignment="Top" Background="#FF99C7CA" Height="27" BorderBrush="{x:Null}" FontSize="17"/>
+            <TextBox UseLayoutRounding="True"  x:Name="txt_21" Canvas.Left="337" TextWrapping="Wrap" Text="FFFFFFFF" Canvas.Top="520" Width="105" HorizontalAlignment="Center" VerticalAlignment="Top" Background="#FF99C7CA" Height="27" BorderBrush="{x:Null}" FontSize="17"/>
+            <TextBox UseLayoutRounding="True"  x:Name="txt_22" Canvas.Left="472" TextWrapping="Wrap" Text="FFFFFFFF" Canvas.Top="520" Width="105" HorizontalAlignment="Center" VerticalAlignment="Top" Background="#FF99C7CA" Height="27" BorderBrush="{x:Null}" FontSize="17"/>
+            <TextBox UseLayoutRounding="True"  x:Name="txt_23" Canvas.Left="607" TextWrapping="Wrap" Text="FFFFFFFF" Canvas.Top="520" Width="105" HorizontalAlignment="Center" VerticalAlignment="Top" Background="#FF99C7CA" Height="27" BorderBrush="{x:Null}" FontSize="17"/>
+
+            <TextBox UseLayoutRounding="True"  x:Name="txt_30"  Canvas.Left="202" TextWrapping="Wrap" Text="FFFFFFFF" Canvas.Top="570" Width="105" HorizontalAlignment="Center" VerticalAlignment="Top" Background="#FF99C7CA" Height="27" BorderBrush="{x:Null}" FontSize="17"/>
+            <TextBox UseLayoutRounding="True"  x:Name="txt_31"  Canvas.Left="337" TextWrapping="Wrap" Text="FFFFFFFF" Canvas.Top="570" Width="105" HorizontalAlignment="Center" VerticalAlignment="Top" Background="#FF99C7CA" Height="27" BorderBrush="{x:Null}" FontSize="17"/>
+            <TextBox UseLayoutRounding="True"  x:Name="txt_32"  Canvas.Left="472" TextWrapping="Wrap" Text="FFFFFFFF" Canvas.Top="570" Width="105" HorizontalAlignment="Center" VerticalAlignment="Top" Background="#FF99C7CA" Height="27" BorderBrush="{x:Null}" FontSize="17"/>
+            <TextBox UseLayoutRounding="True"  x:Name="txt_33"  Canvas.Left="607" TextWrapping="Wrap" Text="FFFFFFFF" Canvas.Top="570" Width="105" HorizontalAlignment="Center" VerticalAlignment="Top" Background="#FF99C7CA" Height="27" BorderBrush="{x:Null}" FontSize="17"/>
+
+            <TextBox UseLayoutRounding="True"  x:Name="txt_40"  Canvas.Left="202" TextWrapping="Wrap" Text="FFFFFFFF" Canvas.Top="620" Width="105" HorizontalAlignment="Center" VerticalAlignment="Top" Background="#FF99C7CA" Height="27" BorderBrush="{x:Null}" FontSize="17"/>
+            <TextBox UseLayoutRounding="True"  x:Name="txt_41"  Canvas.Left="337" TextWrapping="Wrap" Text="FFFFFFFF" Canvas.Top="620" Width="105" HorizontalAlignment="Center" VerticalAlignment="Top" Background="#FF99C7CA" Height="27" BorderBrush="{x:Null}" FontSize="17"/>
+            <TextBox UseLayoutRounding="True"  x:Name="txt_42"  Canvas.Left="472" TextWrapping="Wrap" Text="FFFFFFFF" Canvas.Top="620" Width="105" HorizontalAlignment="Center" VerticalAlignment="Top" Background="#FF99C7CA" Height="27" BorderBrush="{x:Null}" FontSize="17"/>
+            <TextBox UseLayoutRounding="True"  x:Name="txt_43"  Canvas.Left="607" TextWrapping="Wrap" Text="FFFFFFFF" Canvas.Top="620" Width="105" HorizontalAlignment="Center" VerticalAlignment="Top" Background="#FF99C7CA" Height="27" BorderBrush="{x:Null}" FontSize="17"/>
+
+            <Label Content="PROM Write 1" Canvas.Left="98" Canvas.Top="473" HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="White" Height="31" Width="90"/>
+            <Label Content="PROM Write 2" Canvas.Left="98" Canvas.Top="522" HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="White" Height="31" Width="90"/>
+            <Label Content="PROM Write 3" Canvas.Left="98" Canvas.Top="572" HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="White" Height="31" Width="90"/>
+            <Label Content="PROM Write 4" Canvas.Left="98" Canvas.Top="621" HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="White" Height="31" Width="90" />
+
+            <TextBox UseLayoutRounding="True"  x:Name="txt_WriteAllData_HEX"  Canvas.Left="202" TextWrapping="Wrap" Text="FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF" Canvas.Top="670" Width="506" Background="#FF99C7CA" Height="60" BorderBrush="{x:Null}" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+
+            <Button x:Name="btn_PageWrite" Content="寫入" Click="btn_PageWrite_Click" FontSize="17" FontWeight="Bold" Background="#FF99C7CA" BorderThickness="2,2,2,2" BorderBrush="#FF394352" Canvas.Left="102" Canvas.Top="670" Height="61" Width="86" HorizontalAlignment="Center" VerticalAlignment="Top">
+                <Button.Effect>
+                    <DropShadowEffect BlurRadius="20" RenderingBias="Quality" ShadowDepth="10" Direction="290"/>
+                </Button.Effect>
+            </Button>
+
+
+            <Label Content="CMD PAGE = 0" Canvas.Left="874" Canvas.Top="438" HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="White" Height="24" Width="113"/>
+            <Label Content="CMD PAGE = 2" Canvas.Left="1145" Canvas.Top="439" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="White" Height="24" Width="109"/>
+            <Label Content="CMD PAGE = 3" Canvas.Left="1274" Canvas.Top="438" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" Height="24" Width="112"/>
+            <Label Content="CMD PAGE = 1" Canvas.Left="1018" Canvas.Top="438" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" Height="24" Width="111"/>
+
+            <TextBox UseLayoutRounding="True" x:Name="txt_10_Read" Canvas.Left="877"   TextWrapping="Wrap" Text="FFFFFFFF" Canvas.Top="468" Width="105" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#FF99C7CA" Height="27" BorderBrush="{x:Null}" FontSize="17"/>
+            <TextBox UseLayoutRounding="True" x:Name="txt_11_Read" Canvas.Left="1016"     TextWrapping="Wrap" Text="FFFFFFFF" Canvas.Top="468" Width="105" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#FF99C7CA" Height="27" BorderBrush="{x:Null}" FontSize="17"/>
+            <TextBox UseLayoutRounding="True" x:Name="txt_12_Read" Canvas.Left="1145"    TextWrapping="Wrap" Text="FFFFFFFF" Canvas.Top="468" Width="105" HorizontalAlignment="Center" VerticalAlignment="Top" Background="#FF99C7CA" Height="27" BorderBrush="{x:Null}" FontSize="17"/>
+            <TextBox UseLayoutRounding="True" x:Name="txt_13_Read" Canvas.Left="1273"    TextWrapping="Wrap" Text="FFFFFFFF" Canvas.Top="468" Width="105" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#FF99C7CA" Height="27" BorderBrush="{x:Null}" FontSize="17"/>
+
+            <TextBox UseLayoutRounding="True"  x:Name="txt_20_Read" Canvas.Left="877"   TextWrapping="Wrap" Text="FFFFFFFF" Canvas.Top="518" Width="105" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#FF99C7CA" Height="27" BorderBrush="{x:Null}" FontSize="17"/>
+            <TextBox UseLayoutRounding="True"  x:Name="txt_21_Read" Canvas.Left="1016"   TextWrapping="Wrap" Text="FFFFFFFF" Canvas.Top="518" Width="105" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#FF99C7CA" Height="27" BorderBrush="{x:Null}" FontSize="17"/>
+            <TextBox UseLayoutRounding="True"  x:Name="txt_22_Read" Canvas.Left="1145" TextWrapping="Wrap" Text="FFFFFFFF" Canvas.Top="518" Width="105" HorizontalAlignment="Center" VerticalAlignment="Top" Background="#FF99C7CA" Height="27" BorderBrush="{x:Null}" FontSize="17"/>
+            <TextBox UseLayoutRounding="True"  x:Name="txt_23_Read" Canvas.Left="1273" TextWrapping="Wrap" Text="FFFFFFFF" Canvas.Top="518" Width="105" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#FF99C7CA" Height="27" BorderBrush="{x:Null}" FontSize="17"/>
+
+            <TextBox UseLayoutRounding="True"  x:Name="txt_30_Read"  Canvas.Left="877"    TextWrapping="Wrap" Text="FFFFFFFF" Canvas.Top="568" Width="105" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#FF99C7CA" Height="27" BorderBrush="{x:Null}" FontSize="17"/>
+            <TextBox UseLayoutRounding="True"  x:Name="txt_31_Read"  Canvas.Left="1016"    TextWrapping="Wrap" Text="FFFFFFFF" Canvas.Top="568" Width="105" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#FF99C7CA" Height="27" BorderBrush="{x:Null}" FontSize="17"/>
+            <TextBox UseLayoutRounding="True"  x:Name="txt_32_Read"  Canvas.Left="1145"  TextWrapping="Wrap" Text="FFFFFFFF" Canvas.Top="568" Width="105" HorizontalAlignment="Center" VerticalAlignment="Top" Background="#FF99C7CA" Height="27" BorderBrush="{x:Null}" FontSize="17"/>
+            <TextBox UseLayoutRounding="True"  x:Name="txt_33_Read"  Canvas.Left="1273"  TextWrapping="Wrap" Text="FFFFFFFF" Canvas.Top="568" Width="105" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#FF99C7CA" Height="27" BorderBrush="{x:Null}" FontSize="17"/>
+
+            <TextBox UseLayoutRounding="True"  x:Name="txt_40_Read"  Canvas.Left="877"    TextWrapping="Wrap" Text="FFFFFFFF" Canvas.Top="618" Width="105" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#FF99C7CA" Height="27" BorderBrush="{x:Null}" FontSize="17"/>
+            <TextBox UseLayoutRounding="True"  x:Name="txt_41_Read"  Canvas.Left="1016"    TextWrapping="Wrap" Text="FFFFFFFF" Canvas.Top="618" Width="105" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#FF99C7CA" Height="27" BorderBrush="{x:Null}" FontSize="17"/>
+            <TextBox UseLayoutRounding="True"  x:Name="txt_42_Read"  Canvas.Left="1145"  TextWrapping="Wrap" Text="FFFFFFFF" Canvas.Top="618" Width="105" HorizontalAlignment="Center" VerticalAlignment="Top" Background="#FF99C7CA" Height="27" BorderBrush="{x:Null}" FontSize="17"/>
+            <TextBox UseLayoutRounding="True"  x:Name="txt_43_Read"  Canvas.Left="1273"  TextWrapping="Wrap" Text="FFFFFFFF" Canvas.Top="618" Width="105" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#FF99C7CA" Height="27" BorderBrush="{x:Null}" FontSize="17"/>
+
+            <Label Content="PROM Read 1" Canvas.Left="784" Canvas.Top="470" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="White" Height="31" Width="90"/>
+            <Label Content="PROM Read 2" Canvas.Left="784" Canvas.Top="519" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="White" Height="31" Width="90"/>
+            <Label Content="PROM Read 3" Canvas.Left="784" Canvas.Top="569" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="White" Height="31" Width="90"/>
+            <Label Content="PROM Read 4" Canvas.Left="784" Canvas.Top="618" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="White" Height="31" Width="90" />
+
+            <TextBox UseLayoutRounding="True"  x:Name="txt_ReadAllData_HEX"  Canvas.Left="879" TextWrapping="Wrap" Text="FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF" Canvas.Top="673" Width="503" Background="#FF99C7CA" Height="60" BorderBrush="{x:Null}" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+
+            <Button x:Name="btn_PageRead" Content="讀取" Click="btn_PageRead_Click" FontSize="17" FontWeight="Bold" Background="#FF99C7CA" BorderThickness="2,2,2,2" BorderBrush="#FF394352" Canvas.Left="784" Canvas.Top="673" Height="61" Width="86" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <Button.Effect>
+                    <DropShadowEffect BlurRadius="20" RenderingBias="Quality" ShadowDepth="10" Direction="290"/>
+                </Button.Effect>
+            </Button>
+
+
+            <TextBox  x:Name="txt_PromCtrl_hex" TextWrapping="Wrap" Background="#FF99C7CA" Canvas.Left="1152" Canvas.Top="263" Width="175" HorizontalAlignment="Left" VerticalAlignment="Center" Height="47"/>
+            <TextBox  x:Name="txt_PromCtrl_bin" TextWrapping="Wrap" Background="#FF99C7CA" Canvas.Left="194" Canvas.Top="263" Width="453" HorizontalAlignment="Left" VerticalAlignment="Center" Height="47"/>
+            <TextBox  x:Name="txt_PromCtrl_dec" TextWrapping="Wrap" Background="#FF99C7CA" Canvas.Left="748" Canvas.Top="263" Width="306" HorizontalAlignment="Left" VerticalAlignment="Center" Height="47"/>
+            <Label  FontSize="25" UseLayoutRounding="True" Content="BIN :" Foreground="White" Canvas.Left="126" Canvas.Top="259" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Label  FontSize="25" UseLayoutRounding="True" Content="DEC :" Foreground="White" Canvas.Left="671" Canvas.Top="259" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <Label  FontSize="25" UseLayoutRounding="True" Content="HEX :" Foreground="White" Canvas.Left="1079" Canvas.Top="259" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <Label  FontSize="25" UseLayoutRounding="True" Content="Bit15~0 Address ( HEX )" Foreground="White" Canvas.Left="700" Canvas.Top="175" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Label  FontSize="25" UseLayoutRounding="True" Content="Bit17~16 Byte size" Foreground="White" Canvas.Left="295" Canvas.Top="175" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Label  FontSize="25" UseLayoutRounding="True" Content="Bit18" Foreground="White" Canvas.Left="126" Canvas.Top="175" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Label  FontSize="25" UseLayoutRounding="True" Content="0" Foreground="White" Canvas.Left="126" Canvas.Top="208" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <Label  FontSize="25" UseLayoutRounding="True" Content="Bit19 RD/WR#" Foreground="White" Canvas.Left="1178" Canvas.Top="85" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Label  FontSize="25" UseLayoutRounding="True" Content="Bit22~20 ID" Foreground="White" Canvas.Left="927" Canvas.Top="85" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Label  FontSize="25" UseLayoutRounding="True" Content="Bit23 Type" Foreground="White" HorizontalContentAlignment="Center" Canvas.Left="700" Canvas.Top="85" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Label  FontSize="25" UseLayoutRounding="True" Content="Bit25~24 I2C clock frequency" Foreground="White" Canvas.Left="295" Canvas.Top="85" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Label  FontSize="25" UseLayoutRounding="True" Content="Bit31~26" Foreground="White" Canvas.Left="126" Canvas.Top="85" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Label  FontSize="25" UseLayoutRounding="True" Content="0000 00" Foreground="White" Canvas.Left="126" Canvas.Top="123" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <ComboBox x:Name="cob_PromCtrl_17to16" SelectedIndex="0" Canvas.Left="295" Canvas.Top="225" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <ComboBoxItem Content="00 : 8 bytes"   Tag="00"/>
+                <ComboBoxItem Content="01 : 16 bytes" Tag="01"/>
+                <ComboBoxItem Content="10 : 32 bytes" Tag="10"/>
+                <ComboBoxItem Content="11 : 64 bytes" Tag="11"/>
+            </ComboBox>
+            <ComboBox x:Name="cob_PromCtrl_19" SelectedIndex="0" Canvas.Left="1182" Canvas.Top="139" HorizontalAlignment="Left" VerticalAlignment="Center" Width="173">
+                <ComboBoxItem Content="0 : Write" Tag="0"/>
+                <ComboBoxItem Content="1 : Read" Tag="1"/>
+            </ComboBox>
+            <ComboBox x:Name="cob_PromCtrl_22to20"  SelectedIndex="0" Canvas.Left="936" Canvas.Top="138" HorizontalAlignment="Left" VerticalAlignment="Top" Width="130">
+                <ComboBoxItem Content="2 : 主機板" Tag="010"/>
+                <ComboBoxItem Content="4 : Encoder #1" Tag="100"/>
+                <ComboBoxItem Content="5 : Encoder #2" Tag="101"/>
+                <ComboBoxItem Content="6 : L.C. #1" Tag="110"/>
+                <ComboBoxItem Content="7 : L.C. #2" Tag="111"/>
+            </ComboBox>
+            <ComboBox x:Name="cob_PromCtrl_23" HorizontalContentAlignment="Center"  SelectedIndex="0" Canvas.Left="700" Canvas.Top="139" HorizontalAlignment="Center" VerticalAlignment="Center" Width="145">
+                <ComboBoxItem Content="0 : 32K~512K bits ,24C32~24C512" Tag="0"/>
+                <ComboBoxItem Content="1 : 2K bits(256 Byte) ,24C02" Tag="1"/>
+            </ComboBox>
+            <ComboBox x:Name="cob_PromCtrl_25to24"  SelectedIndex="0" Canvas.Left="295" Canvas.Top="139" HorizontalAlignment="Center" VerticalAlignment="Center" Width="352">
+                <ComboBoxItem Content="00 : Anti-Noise" Tag="00"        />
+                <ComboBoxItem Content="01 : Normal"       Tag="01"  />
+                <ComboBoxItem Content="10 : Standard"    Tag="10"           />
+                <ComboBoxItem Content="11 : Fast"              Tag="11" />
+            </ComboBox>
+            <TextBox  x:Name="txt_PromCtrl_15to0" TextWrapping="Wrap" Text="0000" Background="#FF99C7CA"  Canvas.Left="700" Canvas.Top="225" Width="138" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+            <Button x:Name="btn_SendCtrlPar" Content="Send Ctrl"  FontSize="10" FontWeight="Bold" Background="#FF99C7CA" BorderThickness="2,2,2,2" BorderBrush="#FF394352" Canvas.Left="1342" Canvas.Top="262" Height="46" Width="58" HorizontalAlignment="Center" VerticalAlignment="Top" Click="btn_SendCtrlPar_Click">
+                <Button.Effect>
+                    <DropShadowEffect/>
+                </Button.Effect>
+            </Button>
+
+
+        </Canvas>
+
     </Grid>
 </Page>

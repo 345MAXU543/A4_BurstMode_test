@@ -1,0 +1,204 @@
+﻿<Page x:Class="A4_BurstMode_test.Page_05"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:A4_BurstMode_test"
+      xmlns:ScottPlot="clr-namespace:ScottPlot.WPF;assembly=ScottPlot.WPF"
+      mc:Ignorable="d" 
+      d:DesignHeight="970" d:DesignWidth="1500"
+      Title="Page_05" Background="Black" Loaded="Page_Loaded">
+
+    <Grid>
+        <Canvas>
+
+            <Button Name="btn_config" FontSize="25" Content="config" Height="47" Width="381" Canvas.Left="573" Canvas.Top="26" Click="btn_config_Click" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+
+            <CheckBox IsChecked="True" x:Name="ckb_adc1" Content="ADC1" Canvas.Left="16" Canvas.Top="19" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top" Height="16">
+                <CheckBox.RenderTransform>
+                    <ScaleTransform ScaleX="3" ScaleY="3"/>
+                </CheckBox.RenderTransform>
+            </CheckBox>
+            <CheckBox IsChecked="True" x:Name="ckb_adc2" Content="ADC2" Canvas.Left="16" Canvas.Top="69" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top" Height="16">
+                <CheckBox.RenderTransform>
+                    <ScaleTransform ScaleX="3" ScaleY="3"/>
+                </CheckBox.RenderTransform>
+            </CheckBox>
+            <CheckBox IsChecked="True" x:Name="ckb_adc3" Content="ADC3" Canvas.Left="16" Canvas.Top="119" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top" Height="16">
+                <CheckBox.RenderTransform>
+                    <ScaleTransform ScaleX="3" ScaleY="3"/>
+                </CheckBox.RenderTransform>
+            </CheckBox>
+            <CheckBox IsChecked="True" x:Name="ckb_adc4" Content="ADC4" Canvas.Left="16" Canvas.Top="169" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <CheckBox.RenderTransform>
+                    <ScaleTransform ScaleX="3" ScaleY="3"/>
+                </CheckBox.RenderTransform>
+            </CheckBox>
+            <CheckBox IsChecked="True" x:Name="ckb_dsp1" Content="DSP1" Canvas.Left="216" Canvas.Top="16" Foreground="White" Height="16" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <CheckBox.RenderTransform>
+                    <ScaleTransform ScaleX="3" ScaleY="3"/>
+                </CheckBox.RenderTransform>
+            </CheckBox>
+            <CheckBox IsChecked="True" x:Name="ckb_dsp2" Content="DSP2" Canvas.Left="216" Canvas.Top="66" Foreground="White" Height="16" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <CheckBox.RenderTransform>
+                    <ScaleTransform ScaleX="3" ScaleY="3"/>
+                </CheckBox.RenderTransform>
+            </CheckBox>
+            <CheckBox IsChecked="True" x:Name="ckb_dsp3" Content="DSP3" Canvas.Left="216" Canvas.Top="116" Foreground="White" Height="16" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <CheckBox.RenderTransform>
+                    <ScaleTransform ScaleX="3" ScaleY="3"/>
+                </CheckBox.RenderTransform>
+            </CheckBox>
+            <CheckBox IsChecked="True" x:Name="ckb_dsp4" Content="DSP4" Canvas.Left="216" Canvas.Top="166" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <CheckBox.RenderTransform>
+                    <ScaleTransform ScaleX="3" ScaleY="3"/>
+                </CheckBox.RenderTransform>
+            </CheckBox>
+            <CheckBox IsChecked="True" x:Name="ckb_enc1" Content="ENC1" Canvas.Left="406" Canvas.Top="15" Foreground="White" Height="16" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <CheckBox.RenderTransform>
+                    <ScaleTransform ScaleX="3" ScaleY="3"/>
+                </CheckBox.RenderTransform>
+            </CheckBox>
+            <CheckBox IsChecked="True" x:Name="ckb_enc2" Content="ENC2" Canvas.Left="406" Canvas.Top="65" Foreground="White" Height="16" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <CheckBox.RenderTransform>
+                    <ScaleTransform ScaleX="3" ScaleY="3"/>
+                </CheckBox.RenderTransform>
+            </CheckBox>
+            <CheckBox IsChecked="True" x:Name="ckb_enc3" Content="ENC3" Canvas.Left="406" Canvas.Top="115" Foreground="White" Height="16" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <CheckBox.RenderTransform>
+                    <ScaleTransform ScaleX="3" ScaleY="3"/>
+                </CheckBox.RenderTransform>
+            </CheckBox>
+            <CheckBox IsChecked="True" x:Name="ckb_enc4" Content="ENC4" Canvas.Left="406" Canvas.Top="165" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <CheckBox.RenderTransform>
+                    <ScaleTransform ScaleX="3" ScaleY="3"/>
+                </CheckBox.RenderTransform>
+            </CheckBox>
+            <TextBlock x:Name="txt_read" FontSize="30" Canvas.Left="574" TextWrapping="Wrap" Text="TextBlock" Canvas.Top="90" Background="White" Height="112" Width="381" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+            <Button x:Name="btn_readPortB" FontSize="25" Content="read" Height="104" Width="208" Canvas.Left="971" Canvas.Top="90" HorizontalAlignment="Center" VerticalAlignment="Top" Click="btn_readPortB_Click"/>
+
+            <Grid Height="747" Width="1500" HorizontalAlignment="Center" Canvas.Top="223" VerticalAlignment="Top" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+
+
+                <Grid Grid.Row="0" Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock x:Name="txt_adc1" Text="ADC" Grid.Row="0" FontSize="30" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                    <ScottPlot:WpfPlot x:Name="adc1_plot"   Grid.Row="1" Margin="3"  />
+                </Grid>
+
+                <Grid Grid.Row="1" Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock x:Name="txt_adc2" Text="ADC" Grid.Row="0" FontSize="30" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                    <ScottPlot:WpfPlot x:Name="adc2_plot" Grid.Row="1"  Margin="3"  />
+                </Grid>
+
+                <Grid Grid.Row="2" Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock x:Name="txt_adc3" Text="ADC" Grid.Row="0" FontSize="30" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                    <ScottPlot:WpfPlot x:Name="adc3_plot" Grid.Row="1"  Margin="3"  />
+                </Grid>
+
+                <Grid Grid.Row="3" Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock x:Name="txt_adc4" Text="ADC" Grid.Row="0" FontSize="30" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                    <ScottPlot:WpfPlot x:Name="adc4_plot" Grid.Row="1"  Margin="3"  />
+                </Grid>
+
+                <Grid Grid.Row="0" Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock x:Name="txt_dsp1" Text="ADC" Grid.Row="0" FontSize="30" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                    <ScottPlot:WpfPlot x:Name="dsp1_plot" Grid.Row="1"  Margin="3"  />
+                </Grid>
+
+                <Grid Grid.Row="1" Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock x:Name="txt_dsp2" Text="ADC" Grid.Row="0" FontSize="30" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                    <ScottPlot:WpfPlot x:Name="dsp2_plot" Grid.Row="1"  Margin="3"  />
+                </Grid>
+
+                <Grid Grid.Row="2" Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock x:Name="txt_dsp3" Text="ADC" Grid.Row="0" FontSize="30" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                    <ScottPlot:WpfPlot x:Name="dsp3_plot"  Grid.Row="1" Margin="3"  />
+                </Grid>
+
+                <Grid Grid.Row="3" Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock x:Name="txt_dsp4" Text="ADC" Grid.Row="0" FontSize="30" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                    <ScottPlot:WpfPlot x:Name="dsp4_plot" Grid.Row="1"  Margin="3"  />
+                </Grid>
+
+                <Grid  Grid.Row="0" Grid.Column="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock x:Name="txt_enc1" Text="ADC" Grid.Row="0" FontSize="30" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                    <ScottPlot:WpfPlot x:Name="enc1_plot" Grid.Row="1"  Margin="3" />
+                </Grid>
+
+                <Grid  Grid.Row="1" Grid.Column="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock x:Name="txt_enc2" Text="ADC" Grid.Row="0" FontSize="30" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                    <ScottPlot:WpfPlot x:Name="enc2_plot" Grid.Row="1"  Margin="3"/>
+                </Grid>
+
+                <Grid Grid.Row="2" Grid.Column="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock x:Name="txt_enc3" Text="ADC" Grid.Row="0" FontSize="30" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                    <ScottPlot:WpfPlot x:Name="enc3_plot"  Grid.Row="1" Margin="3"  />
+                </Grid>
+
+                <Grid  Grid.Row="3" Grid.Column="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock x:Name="txt_enc4" Text="ADC" Grid.Row="0" FontSize="30" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                    <ScottPlot:WpfPlot x:Name="enc4_plot"   Grid.Row="1" Margin="3"/>
+                </Grid>
+            </Grid>
+        </Canvas>
+    </Grid>
+</Page>
