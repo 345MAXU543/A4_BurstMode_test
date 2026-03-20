@@ -63,7 +63,12 @@ namespace A4_BurstMode_test.A4_MB_SDK
         Rcmd_ADC1_READ24 = 0x20,       // 讀取 ADC1 24bit
         Rcmd_ADC2_READ24 = 0x21,       // 讀取 ADC2 24bit
         Rcmd_ADC3_READ24 = 0x22,       // 讀取 ADC3 24bit
-        Rcmd_ADC4_READ24 = 0x23;       // 讀取 ADC4 24bit
+        Rcmd_ADC4_READ24 = 0x23,       // 讀取 ADC4 24bit
+
+        Rcmd_ADC1_READ24_burstMode = 0x60,       // 讀取 ADC1 24bit
+        Rcmd_ADC2_READ24_burstMode = 0x61,       // 讀取 ADC2 24bit
+        Rcmd_ADC3_READ24_burstMode = 0x62,       // 讀取 ADC3 24bit
+        Rcmd_ADC4_READ24_burstMode = 0x63;       // 讀取 ADC4 24bit
         #endregion
 
         #region Write Command
@@ -248,6 +253,12 @@ namespace A4_BurstMode_test.A4_MB_SDK
                         );
                 }
             }
+
+            public void purge()
+            {
+                fTDI.Purge(FTDI.FT_PURGE.FT_PURGE_RX | FTDI.FT_PURGE.FT_PURGE_TX);
+            }
+
 
             /// <summary>
             /// 寫入命令與資料到 FTDI 裝置。//Not verified yet
@@ -2883,7 +2894,7 @@ namespace A4_BurstMode_test.A4_MB_SDK
                         continue;
                     }
 
-                    int payloadBytes = def.Type == BurstValueType.UInt24 ? 4 : 5;
+                    int payloadBytes = def.Type == BurstValueType.UInt24 ? 3 : 5;
                     int frameLength = 1 + payloadBytes;
 
                     if (_buffer.Count < frameLength)
@@ -2893,16 +2904,13 @@ namespace A4_BurstMode_test.A4_MB_SDK
 
                     if (def.Type == BurstValueType.UInt24)
                     {
-                        // 24 bit = 4 個 7-bit payload
-                        uint p1 = (uint)(_buffer[1] & 0x7F);
-                        uint p2 = (uint)(_buffer[2] & 0x7F);
-                        uint p3 = (uint)(_buffer[3] & 0x7F);
-                        uint p4 = (uint)(_buffer[4] & 0x7F);
+                        uint b1 = (uint)(_buffer[1] & 0x7F);
+                        uint b2 = (uint)(_buffer[2] & 0x7F);
+                        uint b3 = (uint)(_buffer[3] & 0x7F);
 
-                        rawValue = (p1 << 21) |
-                                   (p2 << 14) |
-                                   (p3 << 7) |
-                                   (p4);
+                        rawValue = (b1 << 16) |
+                                   (b2 << 8) |
+                                   (b3);
                     }
                     else
                     {

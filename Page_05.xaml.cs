@@ -96,15 +96,10 @@ namespace A4_BurstMode_test
         {
             var defs = new List<BurstFieldDefinition>
     {
-                 new BurstFieldDefinition { Address = A4MB.Rcmd_ADC1_READ32, Name = "ADC1_32", Type = BurstValueType.UInt32 },
-        new BurstFieldDefinition { Address = A4MB.Rcmd_ADC2_READ32, Name = "ADC2_32", Type = BurstValueType.UInt32 },
-        new BurstFieldDefinition { Address = A4MB.Rcmd_ADC3_READ32, Name = "ADC3_32", Type = BurstValueType.UInt32 },
-        new BurstFieldDefinition { Address = A4MB.Rcmd_ADC4_READ32, Name = "ADC4_32", Type = BurstValueType.UInt32 },
-
-        new BurstFieldDefinition { Address = A4MB.Rcmd_ADC1_READ24, Name = "ADC1_24", Type = BurstValueType.UInt24 },
-        new BurstFieldDefinition { Address = A4MB.Rcmd_ADC2_READ24, Name = "ADC2_24", Type = BurstValueType.UInt24 },
-        new BurstFieldDefinition { Address = A4MB.Rcmd_ADC3_READ24, Name = "ADC3_24", Type = BurstValueType.UInt24 },
-        new BurstFieldDefinition { Address = A4MB.Rcmd_ADC4_READ24, Name = "ADC4_24", Type = BurstValueType.UInt24 },
+        new BurstFieldDefinition { Address = A4MB.Rcmd_ADC1_READ24_burstMode, Name = "ADC1_24", Type = BurstValueType.UInt24 },
+        new BurstFieldDefinition { Address = A4MB.Rcmd_ADC2_READ24_burstMode, Name = "ADC2_24", Type = BurstValueType.UInt24 },
+        new BurstFieldDefinition { Address = A4MB.Rcmd_ADC3_READ24_burstMode, Name = "ADC3_24", Type = BurstValueType.UInt24 },
+        new BurstFieldDefinition { Address = A4MB.Rcmd_ADC4_READ24_burstMode, Name = "ADC4_24", Type = BurstValueType.UInt24 },
 
               new BurstFieldDefinition { Address = A4MB.Rcmd_DSP1_READ32, Name = "DSP1_32", Type = BurstValueType.UInt32 },
         new BurstFieldDefinition { Address = A4MB.Rcmd_DSP2_READ32, Name = "DSP2_32", Type = BurstValueType.UInt32 },

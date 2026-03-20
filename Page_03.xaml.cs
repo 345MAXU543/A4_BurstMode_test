@@ -281,6 +281,7 @@ namespace A4_BurstMode_test
 
             if (_isReading)// 開始讀取
             {
+                MainWindow.A4Motherboard.Ftdi_Ctrl_USB_C.purge();
                 ad1_dataPoints.Clear();
                 ad2_dataPoints.Clear();
                 ad1_dataPoints_ALL.Clear();
