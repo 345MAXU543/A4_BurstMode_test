@@ -516,25 +516,41 @@ namespace A4_BurstMode_test.A4_MB_SDK
                 byte[] DataArray = new byte[4];
                 DataArray[0] = 0;
                 DataArray[1] = 0;
-                DataArray[2] = (byte)(0 | 0x80);
+                DataArray[2] = (byte)(0 | 0x80); // Set
                 DataArray[3] = (byte)(Command & 0xFF);
 
-                ulong packet = ((ulong)DataArray[0] << 24) |
-                               ((ulong)DataArray[1] << 16) |
-                               ((ulong)DataArray[2] << 8) |
-                               ((ulong)DataArray[3]);
+                ulong packet = 0;
+                packet |= ((ulong)DataArray[0]) << 24;
+                packet |= ((ulong)DataArray[1]) << 16;
+                packet |= ((ulong)DataArray[2]) << 8;
+                packet |= ((ulong)DataArray[3]);
 
                 Write(0x00, packet);
 
-                // 讀取三個 bytes 組成 24-bit
-                byte[] recv = new byte[4];
+                
+                byte[] recv = new byte[5];
                 uint bytesRead = 0;
-                fTDI.Read(recv, 4, ref bytesRead);
-                if (bytesRead < 4) return null;
+                FTDI.FT_STATUS status=fTDI.Read(recv, 5, ref bytesRead);
 
-                uint data = ((uint)(recv[1] & 0x7F) << 16) |
-                            ((uint)(recv[2] & 0x7F) << 8) |
-                            ((uint)(recv[3] & 0x7F));
+                if (status != FTD2XX_NET.FTDI.FT_STATUS.FT_OK)
+                    throw new InvalidOperationException("讀取失敗");
+
+                    if (bytesRead < 5)
+                        throw new InvalidOperationException("資料不足，讀取到的 byte 數量太少");
+
+                uint address = (uint)recv[0]&0x3F;
+
+                // 把標誌位 (bit7) 清掉，只保留低 7 bit
+                uint part1 = (uint)(recv[1] & 0x07); // 3bit
+                uint part2 = (uint)(recv[2] & 0x7F); // 7bit
+                uint part3 = (uint)(recv[3] & 0x7F); // 7bit
+                uint part4 = (uint)(recv[4] & 0x7F); // 7bit
+
+                uint data = (part1 << 21) |
+                                            (part2 << 14) |
+                                            (part3 << 7) |
+                                            (part4 );
+                                          
                 return data;
             }
 
@@ -1915,14 +1931,14 @@ namespace A4_BurstMode_test.A4_MB_SDK
 
 
                 // Calibration
-                ADC12_CTRL_0x16(ADC_Enable.Enable, ReadMode.Manual, RW_mode.Write, AdcCmd.CONVERSION_CAL_RATE15);
+                ADC12_CTRL_0x16(ADC_Enable.Enable, ReadMode.Manual, RW_mode.Write, AdcCmd.CONVERSION_CAL_RATE9);
                 Thread.Sleep(100);
                 WaitForReady("校正", MAX_RETRY, 3000);
 
                 //Conversion rate
                 //這時候已經設定連續讀取的轉換速度，而且似乎不能再去問狀態了，否則會卡在等待 ADC ready 的迴圈裡，因為連續讀取模式下 ADC 是不會有 ready 狀態的
 
-                ADC12_CTRL_0x16(ADC_Enable.Enable, ReadMode.Manual, RW_mode.Write, AdcCmd.CONVERSION_NO_CAL_RATE15);
+                ADC12_CTRL_0x16(ADC_Enable.Enable, ReadMode.Manual, RW_mode.Write, AdcCmd.CONVERSION_NO_CAL_RATE9);
                 //WaitForReady("設定 Conversion rate", MAX_RETRY, 3000);
 
                 return "Config done";
@@ -2894,7 +2910,7 @@ namespace A4_BurstMode_test.A4_MB_SDK
                         continue;
                     }
 
-                    int payloadBytes = def.Type == BurstValueType.UInt24 ? 3 : 5;
+                    int payloadBytes = def.Type == BurstValueType.UInt24 ? 4 : 5;
                     int frameLength = 1 + payloadBytes;
 
                     if (_buffer.Count < frameLength)
@@ -2904,13 +2920,17 @@ namespace A4_BurstMode_test.A4_MB_SDK
 
                     if (def.Type == BurstValueType.UInt24)
                     {
-                        uint b1 = (uint)(_buffer[1] & 0x7F);
-                        uint b2 = (uint)(_buffer[2] & 0x7F);
-                        uint b3 = (uint)(_buffer[3] & 0x7F);
+                        uint p1 = (uint)(_buffer[1] & 0x07);
+                        uint p2 = (uint)(_buffer[2] & 0x7F);
+                        uint p3 = (uint)(_buffer[3] & 0x7F);
+                        uint p4 = (uint)(_buffer[4] & 0x7F);
 
-                        rawValue = (b1 << 16) |
-                                   (b2 << 8) |
-                                   (b3);
+
+                        rawValue = (p1 << 21) |
+                                   (p2 << 14) |
+                                   (p3 << 7) |
+                                   (p4);
+                                 
                     }
                     else
                     {

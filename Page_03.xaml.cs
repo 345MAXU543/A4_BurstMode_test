@@ -50,7 +50,7 @@ namespace A4_BurstMode_test
         double global_ADC2_Load_32bit = 0;
 
         double global_ADC1_Load_24bit = 0;
-        double global_ADC2_Load_24bit = 0;
+        uint global_ADC2_Load_24bit = 0;
         private CancellationTokenSource _cts;
 
        
@@ -274,7 +274,7 @@ namespace A4_BurstMode_test
                 MessageBox.Show("Error: " + ex.Message);
             }
         }
-
+        List<uint> _adcList = new List<uint>();
         private async void btn_AD12_ReadContinuous_Click(object sender, RoutedEventArgs e)
         {
             _isReading = !_isReading; // 按一次啟動，再按一次停止
@@ -326,6 +326,7 @@ namespace A4_BurstMode_test
 
                         txt_adc2_logger.Dispatcher.Invoke(() =>
                         {
+                            
                             //textBox
                             if (txt_adc2_logger.LineCount > 10000)
                                 txt_adc2_logger.Clear();
@@ -390,7 +391,7 @@ namespace A4_BurstMode_test
                 //adc2_raw32 = ADC.ReadContinuous_AD2_32bit();
                 adc1_raw24 = ADC.ReadContinuous_AD1_24bit();
                 adc2_raw24 = ADC.ReadContinuous_AD2_24bit();
-
+                _adcList.Add((uint)adc2_raw24);//////////////////////////////////////////////////////////這行是在測速度的
                 double t_sec = Math.Round(sw.Elapsed.TotalMilliseconds / 1000.0, 6);
 
                 // 用 List<double> 取代 Append
@@ -415,7 +416,7 @@ namespace A4_BurstMode_test
                 global_ADC1_Load_32bit = adc1_raw32;
                 global_ADC2_Load_32bit = adc2_raw32;
                 global_ADC1_Load_24bit = adc1_raw24;
-                global_ADC2_Load_24bit = adc2_raw24;
+                global_ADC2_Load_24bit = (uint)adc2_raw24;
 
                 // 控制頻率：自算延遲時間
                 double elapsed = sw.Elapsed.TotalMilliseconds % period;
